@@ -1,9 +1,17 @@
+import React from "react";
+import { Dimensions } from "react-native";
 import * as tf from "@tensorflow/tfjs";
 import { bundleResourceIO, decodeJpeg } from "@tensorflow/tfjs-react-native";
-import { Dimensions } from "react-native";
 import * as ImageManipulator from "expo-image-manipulator";
 
+import { Base64Binary } from "../utils/b64.js";
+
+const BITMAP_DIMENSION = 224;
+const TENSORFLOW_CHANNEL = 3;
 const { height: DEVICE_HEIGHT, width: DEVICE_WIDTH } = Dimensions.get("window");
+
+// const modelJson = require("../model/model.json");
+// const modelWeights = require("../model/weights.bin");
 
 export const cropPicture = async (imageData, maskDimension) => {
   try {
@@ -36,13 +44,6 @@ export const cropPicture = async (imageData, maskDimension) => {
     console.log("Could not crop & resize photo", error);
   }
 };
-
-import { Base64Binary } from "../utils/b64.js";
-const BITMAP_DIMENSION = 224;
-const TENSORFLOW_CHANNEL = 3;
-
-const modelJson = require("../model/model.json");
-const modelWeights = require("../model/weights.bin");
 
 export const getModel = async () => {
   try {
