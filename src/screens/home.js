@@ -44,7 +44,7 @@ function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.roundButton2} onPress={pickImage}>
             <MaterialIcons name="upload-file" size={100} style={styles.upload}/>
-          <Text style={styles.uploadText}>Pick Image</Text>
+          <Text style={styles.uploadText}>Select Image</Text>
         </TouchableOpacity>
       </View>
       <View styles={{ flexDirection: "column", justifyContent: "space-between" }}>
