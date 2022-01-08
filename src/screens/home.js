@@ -4,6 +4,8 @@ import Constants from "expo-constants";
 import * as ImagePicker from "expo-image-picker";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import Button from "../components/button.js";
+
 import Results from "./results.js";
 
 import Context from "../utils/context.js";
@@ -29,9 +31,7 @@ function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={pickImage}>
-        <Text>Pick an image</Text>
-      </TouchableOpacity>
+      <Button text={"Pick an image"} onPress={pickImage} />
     </View>
   );
 }
