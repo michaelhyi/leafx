@@ -48,28 +48,39 @@ function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View styles={{ flexDirection: "column", justifyContent: "space-between" }}>
-        <TouchableOpacity onPress={() => navigation.navigate("Past Scans")}>
+        <View>
           <View style={styles.rectangle}>
-            <MaterialIcons name="collections" size={60} style={styles.icons} />
+            <Text style={styles.icons}>20</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
-              <Text style={styles.largeText1}>Past Scans</Text>
+              <Text style={styles.largeText1}>Total Scans</Text>
               <Text style={styles.smallText1}>
-                Manage all of your past image scans
+                Your total contribution to the environment
               </Text>
             </View>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+        </View>
+        <View>
           <View style={styles.rectangle1}>
-            <MaterialIcons name="settings" size={60} style={styles.icons} />
+          <Text style={styles.icons}>10</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
-              <Text style={styles.largeText1}>Settings</Text>
+              <Text style={styles.largeText1}>Infections Plants</Text>
               <Text style={styles.smallText1}>
-                Manage your personal preferences
+                Plants that need your help
               </Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </View>
+        <View>
+          <View style={styles.rectangle1}>
+          <Text style={styles.icons}>10</Text>
+            <View style={{ flexDirection: "column", flexShrink: 1 }}>
+              <Text style={styles.largeText1}>Healthy Plants</Text>
+              <Text style={styles.smallText1}>
+                Plants that take in carbondioxide and produce oxygen for you
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -113,7 +124,7 @@ const styles = StyleSheet.create({
   },
 
   roundButton2: {
-    marginTop: 50,
+    marginTop: 40,
     width: 230,
     height: 230,
     justifyContent: 'center',
@@ -194,6 +205,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     color: "#7c9982",
+    fontSize: 45,
+    fontFamily: "Avenir-Heavy"
   },
 
   largeText1: {
