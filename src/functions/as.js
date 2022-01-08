@@ -1,14 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const saveScan = async (image, diagnosis) => {
-  const pastScans = await AsyncStorage.getItem("@scans");
-  const parsedPastScans = JSON.parse(pastScans);
+  let data = await AsyncStorage.getItem("@scans");
+  data = JSON.parse(data);
 
-  if (parsedPastScans) {
+  if (data) {
     await AsyncStorage.setItem(
       "@scans",
       JSON.stringify([
-        ...parsedPastScans,
+        ...data,
         {
           image: image,
           diagonsis: diagnosis,
@@ -31,6 +31,13 @@ export const saveScan = async (image, diagnosis) => {
 };
 
 export const readScans = async (setData) => {
-  const pastScans = await AsyncStorage.getItem("@scans");
-  if (scans) setData(JSON.parse(pastScans));
+  let data = await AsyncStorage.getItem("@scans");
+
+  if (scans) {
+    data = JSON.parse(data);
+    data.sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+    setData(data);
+  }
 };
