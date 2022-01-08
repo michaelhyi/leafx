@@ -34,7 +34,8 @@ const results = [
 
 export const process = async (image, setDiagnosis) => {
   await tf.ready();
-  const model = await tf.loadLayersModel("../models/model.json");
+  const model = await tf.loadLayersModel("../model/model.json");
+  console.log("model loaded.");
   // const model = await tf.loadLayersModel(
   //   "https://teachablemachine.withgoogle.com/models/DE1r2gaAH/"
   // );
