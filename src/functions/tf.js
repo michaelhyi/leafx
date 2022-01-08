@@ -78,6 +78,47 @@ export const startPrediction = async (model, tensor) => {
   }
 };
 
+const results = [
+  "Apple Scab",
+  "Black Rot",
+  "Cedar Apple Rust",
+  "Healthy",
+  "Healthy",
+  "Healthy",
+  "Powdery Mildew",
+  "Cercospora Leaf Spot",
+  "Common Rust",
+  "Healthy",
+  "Northern Leaf Blight",
+  "Black Rot",
+  "Black Measles",
+  "Healthy",
+  "Isariopsis Leaf Spot",
+  "Citrus Greening",
+  "Bacterial Spot",
+  "Healthy",
+  "Bacterial Spot",
+  "Healthy",
+  "Early Blight",
+  "Healthy",
+  "Late Blight",
+  "Healthy",
+  "Healthy",
+  "Powdery Mildew",
+  "Healthy",
+  "Leaf Scorch",
+  "Bacterial Spot",
+  "Early Blight",
+  "Healthy",
+  "Late Blight",
+  "Leaf Mold",
+  "Septoria Leaf Spot",
+  "Spider Mites",
+  "Target Spot",
+  "Tomato Mosaic Virus",
+  "Tomato Yellow Leaf Curl Virus",
+];
+
 export const process = async (image) => {
   const croppedData = await cropPicture(image, 300);
   const model = await getModel();
@@ -89,5 +130,5 @@ export const process = async (image) => {
     Math.max.apply(null, prediction)
   );
 
-  setPresentedShape(RESULT_MAPPING[highestPrediction]);
+  return results[highestPrediction];
 };
