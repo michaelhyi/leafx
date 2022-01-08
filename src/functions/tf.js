@@ -10,8 +10,8 @@ const BITMAP_DIMENSION = 224;
 const TENSORFLOW_CHANNEL = 3;
 const { height: DEVICE_HEIGHT, width: DEVICE_WIDTH } = Dimensions.get("window");
 
-// const modelJson = require("../model/model.json");
-// const modelWeights = require("../model/weights.bin");
+const modelJson = require("../model/model.json");
+const modelWeights = require("../model/weights.bin");
 
 export const cropPicture = async (imageData, maskDimension) => {
   try {
