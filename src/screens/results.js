@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     margin: 20,
+    borderRadius: 15,
   },
   backgroundContainer: {
     margin: 10,

@@ -23,6 +23,9 @@ export default function App() {
         <Tab.Navigator
           initialRouteName="Home"
           screenOptions={{ headerShown: false }}
+          tabBarOptions={{
+            activeTintColor: "#7c9982",
+          }}
         >
           <Tab.Screen name="Past Scans" component={PastScans} options={{
             tabBarLabel: "Past Scans",

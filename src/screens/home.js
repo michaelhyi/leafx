@@ -63,7 +63,7 @@ function HomeScreen({ navigation }) {
           <View style={styles.rectangle1}>
           <Text style={styles.icons}>10</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
-              <Text style={styles.largeText1}>Infections Plants</Text>
+              <Text style={styles.largeText1}>Infectious Plants</Text>
               <Text style={styles.smallText1}>
                 Plants that need your help
               </Text>
