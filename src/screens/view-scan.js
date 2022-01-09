@@ -43,7 +43,11 @@ export default function ViewScan() {
         <Text style={styles.largeText}>{itemData.date}</Text>
         <Text style={styles.smallText}>{itemData.diagnosis.diagnosis}</Text>
         <Image style={styles.image} source={{ uri: itemData.image.uri }} />
-        <OpenURLButton url={itemData.diagnosis.link}>Learn more</OpenURLButton>
+        {itemData.diagnosis.link.length > 0 && (
+          <OpenURLButton url={itemData.diagnosis.link}>
+            Learn more
+          </OpenURLButton>
+        )}
       </View>
     </View>
   );
