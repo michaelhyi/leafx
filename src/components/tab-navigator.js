@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-import PastScans from "../screens/past-scans.js";
+import HistoryStack from "./history-stack.js";
 import HomeStack from "./home-stack.js";
 import Settings from "../screens/settings.js";
 
@@ -17,14 +17,12 @@ export default function TabNavigator() {
         initialRouteName="Home"
         screenOptions={{
           headerShown: false,
-        }}
-        tabBarOptions={{
           activeTintColor: "#7c9982",
         }}
       >
         <Tab.Screen
           name="Past Scans"
-          component={PastScans}
+          component={HistoryStack}
           options={{
             tabBarLabel: "Past Scans",
             tabBarIcon: ({ color }) => (

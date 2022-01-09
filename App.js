@@ -12,6 +12,7 @@ export default function App() {
   const [totalScans, setTotalScans] = useState(0);
   const [healthyScans, setHealthyScans] = useState(0);
   const [infectiousScans, setInfectiousScans] = useState(0);
+  const [itemData, setItemData] = useState(undefined);
 
   useEffect(() => {
     readUserData(setTotalScans, setHealthyScans, setInfectiousScans);
@@ -28,6 +29,8 @@ export default function App() {
         setHealthyScans,
         infectiousScans,
         setInfectiousScans,
+        itemData,
+        setItemData,
       }}
     >
       <StatusBar style="dark" />

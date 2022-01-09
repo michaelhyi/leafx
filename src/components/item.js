@@ -1,16 +1,18 @@
 import React from "react";
 import { format, parseISO } from "date-fns";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Text } from "react-native";
 
-export default function Item({ uri, date, diagnosis }) {
+export default function Item({ onPress, uri, date, diagnosis }) {
   return (
-    <View style={styles.item}>
+    <TouchableOpacity onPress={onPress} style={styles.item}>
       <Image style={styles.image} source={{ uri: uri }} />
       <View style={styles.text}>
-        <Text style={styles.largeText}>{format(parseISO(date), "MM/dd/yyyy p")}</Text>
+        <Text style={styles.largeText}>
+          {format(parseISO(date), "MM/dd/yyyy p")}
+        </Text>
         <Text style={styles.smallText}>Diagnosis: {diagnosis}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
