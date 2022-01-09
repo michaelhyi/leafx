@@ -37,16 +37,18 @@ export default function Results({ navigation }) {
   }, []);
 
   useEffect(() => {
-    if (diagnosis == "Your plant is healthy.") {
-      setTotalScans(totalScans + 1);
-      setHealthyScans(healthyScans + 1);
-      saveScanCount(totalScans + 1, healthyScans + 1, infectiousScans);
-      saveScan(image, diagnosis, "Healthy", setData);
-    } else if (diagnosis) {
-      setTotalScans(totalScans + 1);
-      setInfectiousScans(infectiousScans + 1);
-      saveScanCount(totalScans + 1, healthyScans, infectiousScans + 1);
-      saveScan(image, diagnosis, "Infected", setData);
+    if (diagnosis) {
+      if (diagnosis.diagnosis == "Your plant is healthy.") {
+        setTotalScans(totalScans + 1);
+        setHealthyScans(healthyScans + 1);
+        saveScanCount(totalScans + 1, healthyScans + 1, infectiousScans);
+        saveScan(image, diagnosis, "Healthy", setData);
+      } else {
+        setTotalScans(totalScans + 1);
+        setInfectiousScans(infectiousScans + 1);
+        saveScanCount(totalScans + 1, healthyScans, infectiousScans + 1);
+        saveScan(image, diagnosis, "Infected", setData);
+      }
     }
   }, [diagnosis]);
 
@@ -95,7 +97,9 @@ export default function Results({ navigation }) {
         <Text style={styles.largeText}>Results are In</Text>
         <Text style={styles.smallText}>{diagnosis.diagnosis}</Text>
         <Image style={styles.image} source={{ uri: image.uri }} />
-        <OpenURLButton url={diagnosis.link}>Learn more</OpenURLButton>
+        {diagnosis.link.length > 0 && (
+          <OpenURLButton url={diagnosis.link}>Learn more</OpenURLButton>
+        )}
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="x" size={50} style={styles.exitButton} />
         </TouchableOpacity>
