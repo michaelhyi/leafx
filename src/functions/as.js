@@ -33,7 +33,7 @@ export const saveScan = async (image, diagnosis) => {
 export const readScans = async (setData) => {
   let data = await AsyncStorage.getItem("@scans");
 
-  if (scans) {
+  if (data) {
     data = JSON.parse(data);
     data.sort(function (a, b) {
       return new Date(b.date) - new Date(a.date);

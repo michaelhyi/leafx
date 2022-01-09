@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, FlatList, Text } from "react-native";
+import { StyleSheet, View, FlatList, Text, Image } from "react-native";
 import Constants from "expo-constants";
 import { format, parseISO } from "date-fns";
 

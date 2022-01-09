@@ -15,7 +15,7 @@ export default function Results() {
 
   useEffect(() => {
     process(image, setDiagnosis, setProcessing);
-    // saveScan(image, diagnosis);
+    saveScan(image, diagnosis);
   }, []);
 
   if (processing) {
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    height: 300,
-    width: 300,
+    height: 256,
+    width: 256,
     margin: 20,
     borderRadius: 15,
   },
