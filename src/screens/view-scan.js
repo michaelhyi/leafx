@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import Foundation from "react-native-vector-icons/Foundation";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 
 import Context from "../utils/context.js";
 
-export default function ViewScan() {
+export default function ViewScan({navigation}) {
   const { itemData } = useContext(Context);
 
   const OpenURLButton = ({ url, children }) => {
@@ -45,9 +47,16 @@ export default function ViewScan() {
         <Image style={styles.image} source={{ uri: itemData.image.uri }} />
         {itemData.diagnosis.link.length > 0 && (
           <OpenURLButton url={itemData.diagnosis.link}>
-            Learn more
+            <View style={styles.background1}>
+              <Text style={styles.background1Text}>
+                Learn More
+              </Text>
+            </View>
           </OpenURLButton>
         )}
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back-circle-sharp" size={50} style={styles.exitButton} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -91,5 +100,27 @@ const styles = StyleSheet.create({
     width: 256,
     margin: 20,
     borderRadius: 15,
+  },
+  background1: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: "#7c9982",
+    borderRadius: 10,
+  },
+  background1Text: {
+    justifyContent: "center",
+    textAlign: "center",
+    marginTop: 9,
+    fontFamily: "Avenir-Heavy",
+    fontSize: 15,
+    backgroundColor: "#7c9982",
+    color: "white"
+  },
+  exitButton: {
+    color: "#7c9982",
+    marginBottom: 10,
+    marginTop: 5,
   },
 });

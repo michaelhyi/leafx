@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import Foundation from "react-native-vector-icons/Foundation";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Constants from "expo-constants";
 
 import { saveScan, saveScanCount } from "../functions/as.js";
@@ -98,10 +99,16 @@ export default function Results({ navigation }) {
         <Text style={styles.smallText}>{diagnosis.diagnosis}</Text>
         <Image style={styles.image} source={{ uri: image.uri }} />
         {diagnosis.link.length > 0 && (
-          <OpenURLButton url={diagnosis.link}>Learn more</OpenURLButton>
+          <OpenURLButton url={diagnosis.link}>
+            <View style={styles.background1}>
+              <Text style={styles.background1Text}>
+                Learn More
+              </Text>
+            </View>
+          </OpenURLButton>
         )}
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Feather name="x" size={50} style={styles.exitButton} />
+          <Ionicons name="chevron-back-circle-sharp" size={50} style={styles.exitButton} />
         </TouchableOpacity>
       </View>
     </View>
@@ -150,5 +157,23 @@ const styles = StyleSheet.create({
   exitButton: {
     color: "#7c9982",
     marginBottom: 10,
+    marginTop: 5,
+  },
+  background1: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: "#7c9982",
+    borderRadius: 10,
+  },
+  background1Text: {
+    justifyContent: "center",
+    textAlign: "center",
+    marginTop: 9,
+    fontFamily: "Avenir-Heavy",
+    fontSize: 15,
+    backgroundColor: "#7c9982",
+    color: "white"
   },
 });
