@@ -4,7 +4,7 @@ import Feather from "react-native-vector-icons/Feather";
 import Constants from "expo-constants";
 
 import { saveScan } from "../functions/as.js";
-// import { process } from "../functions/tf.js";
+import { process } from "../functions/tf.js";
 
 import Context from "../utils/context.js";
 
@@ -13,10 +13,10 @@ export default function Results() {
   const [processing, setProcessing] = useState(true);
   const [diagnosis, setDiagnosis] = useState(undefined);
 
-  // useEffect(() => {
-  //   process(image, setDiagnosis, setProcessing);
-  //   saveScan(image, diagnosis);
-  // }, []);
+  useEffect(() => {
+    process(image, setDiagnosis, setProcessing);
+    // saveScan(image, diagnosis);
+  }, []);
 
   if (processing) {
     return (
