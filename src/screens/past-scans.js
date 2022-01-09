@@ -18,13 +18,16 @@ export default function PastScans() {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.largeText}>PAST SCANS</Text>
+    <View>
+      <View style={styles.container}>
+        <Text style={styles.largeText}>PAST SCANS</Text>
+      </View>
       <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            style={styles.flatlist}
+          />
     </View>
   );
 }
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     shadowColor: "#000",
     shadowOffset: {
-      width: 0,
+      width: 1,
       height: 2,
     },
     shadowOpacity: 0.5,
@@ -52,5 +55,8 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: "Avenir-Heavy",
     textAlign: "center",
+  },
+  flatlist: {
+    marginTop: 5,
   },
 });

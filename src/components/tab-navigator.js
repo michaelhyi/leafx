@@ -17,6 +17,8 @@ export default function TabNavigator() {
         initialRouteName="Home"
         screenOptions={{
           headerShown: false,
+        }}
+        tabBarOptions={{
           activeTintColor: "#7c9982",
         }}
       >
