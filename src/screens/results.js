@@ -60,8 +60,8 @@ export default function Results({ navigation }) {
           <Feather name="scissors" size={80} style={styles.scissors} />
           <Text style={styles.largeText}>Image is Processing...</Text>
           <Text style={styles.smallText}>
-            Our AI is automatically analyzing your image and matching it to
-            10,000 other plants.
+            Our AI is automatically analyzing your image and matching it to over
+            1,000 other plants.
           </Text>
           <Image style={styles.image} source={{ uri: image.uri }} />
           <ActivityIndicator style={{ marginBottom: 15 }} />
@@ -101,14 +101,16 @@ export default function Results({ navigation }) {
         {diagnosis.link.length > 0 && (
           <OpenURLButton url={diagnosis.link}>
             <View style={styles.background1}>
-              <Text style={styles.background1Text}>
-                Learn More
-              </Text>
+              <Text style={styles.background1Text}>Learn More</Text>
             </View>
           </OpenURLButton>
         )}
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back-circle-sharp" size={50} style={styles.exitButton} />
+          <Ionicons
+            name="chevron-back-circle-sharp"
+            size={50}
+            style={styles.exitButton}
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -174,6 +176,6 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir-Heavy",
     fontSize: 15,
     backgroundColor: "#7c9982",
-    color: "white"
+    color: "white",
   },
 });
