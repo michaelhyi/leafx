@@ -18,23 +18,29 @@ export default function Results({navigation}) {
     setHealthyScans,
     infectiousScans,
     setInfectiousScans,
+    data,
+    setData,
   } = useContext(Context);
   const [processing, setProcessing] = useState(true);
   const [diagnosis, setDiagnosis] = useState(undefined);
 
   useEffect(() => {
     process(image, setDiagnosis, setProcessing);
-    saveScan(image, diagnosis);
+  }, []);
 
-    setTotalScans(totalScans + 1);
+  useEffect(() => {
     if (diagnosis == "Your plant is healthy.") {
+      setTotalScans(totalScans + 1);
       setHealthyScans(healthyScans + 1);
       saveScanCount(totalScans + 1, healthyScans + 1, infectiousScans);
-    } else {
+      saveScan(image, diagnosis, "Healthy", setData);
+    } else if (diagnosis) {
+      setTotalScans(totalScans + 1);
       setInfectiousScans(infectiousScans + 1);
       saveScanCount(totalScans + 1, healthyScans, infectiousScans + 1);
+      saveScan(image, diagnosis, "Infected", setData);
     }
-  }, []);
+  }, [diagnosis]);
 
   if (processing) {
     return (
