@@ -9,16 +9,34 @@ const BITMAP_DIMENSION = 224;
 const TENSORFLOW_CHANNEL = 3;
 const { height: DEVICE_HEIGHT, width: DEVICE_WIDTH } = Dimensions.get("window");
 const results = [
-  "Your plant has apple scab.",
-  "Your plant has apple cedar rust.",
-  "Your plant is healthy.",
-  "Your plant has common rust.",
-  "Your plant is healthy.",
-  "Your plant has early blight.",
-  "Your plant is healthy.",
-  "Your plant has early blight.",
-  "Your plant is healthy.",
-  "Your plant has yellow leaf curl virus.",
+  {
+    diagnosis: "Your plant has apple scab.",
+    link: "https://en.wikipedia.org/wiki/Apple_scab",
+  },
+  {
+    diagnosis: "Your plant has cedar apple rust.",
+    link: "https://en.wikipedia.org/wiki/Gymnosporangium_juniperi-virginianae",
+  },
+  { diagnosis: "Your plant is healthy.", link: "" },
+  {
+    diagnosis: "Your plant has common rust.",
+    link: "https://en.wikipedia.org/wiki/Puccinia_sorghi",
+  },
+  { diagnosis: "Your plant is healthy.", link: "" },
+  {
+    diagnosis: "Your plant has early blight.",
+    link: "https://en.wikipedia.org/wiki/Alternaria_solani",
+  },
+  { diagnosis: "Your plant is healthy.", link: "" },
+  {
+    diagnosis: "Your plant has early blight.",
+    link: "https://en.wikipedia.org/wiki/Alternaria_solani",
+  },
+  { diagnosis: "Your plant is healthy.", link: "" },
+  {
+    diagnosis: "Your plant has tomato yellow leaf curl virus.",
+    link: "https://en.wikipedia.org/wiki/Tomato_yellow_leaf_curl_virus",
+  },
 ];
 
 const crop = async (imageData, maskDimension) => {

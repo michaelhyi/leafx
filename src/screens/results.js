@@ -1,5 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, View, Text, ActivityIndicator, Image, TouchableOpacity } from "react-native";
+import React, { useContext, useState, useEffect, useCallback } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import Foundation from "react-native-vector-icons/Foundation";
 import Constants from "expo-constants";
@@ -9,7 +17,7 @@ import { process } from "../functions/tf.js";
 
 import Context from "../utils/context.js";
 
-export default function Results({navigation}) {
+export default function Results({ navigation }) {
   const {
     image,
     totalScans,
@@ -59,19 +67,39 @@ export default function Results({navigation}) {
     );
   }
 
+  const OpenURLButton = ({ url, children }) => {
+    const handlePress = useCallback(async () => {
+      // Checking if the link is supported for links with custom URL scheme.
+      const supported = await Linking.canOpenURL(url);
+
+      if (supported) {
+        // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+        // by some browser in the mobile
+        await Linking.openURL(url);
+      } else {
+        Alert.alert(`Don't know how to open this URL: ${url}`);
+      }
+    }, [url]);
+
+    return (
+      <TouchableOpacity onPress={handlePress}>
+        <Text>{children}</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
-          <Foundation name="results" size={80} style={styles.scissors} />
-          <Text style={styles.largeText}>Results are In</Text>
-          <Text style={styles.smallText}>
-            {diagnosis}
-          </Text>
-          <Image style={styles.image} source={{ uri: image.uri }} />
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Feather name="x" size={50} style={styles.exitButton}/>
-          </TouchableOpacity>
-        </View>
+        <Foundation name="results" size={80} style={styles.scissors} />
+        <Text style={styles.largeText}>Results are In</Text>
+        <Text style={styles.smallText}>{diagnosis.diagnosis}</Text>
+        <Image style={styles.image} source={{ uri: image.uri }} />
+        <OpenURLButton url={diagnosis.link}>Learn more</OpenURLButton>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Feather name="x" size={50} style={styles.exitButton} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -118,5 +146,5 @@ const styles = StyleSheet.create({
   exitButton: {
     color: "#7c9982",
     marginBottom: 10,
-  }
+  },
 });

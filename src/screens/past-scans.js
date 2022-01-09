@@ -29,7 +29,9 @@ export default function PastScans({ navigation }) {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => {
+          return item.id;
+        }}
         style={styles.flatlist}
       />
     </View>
