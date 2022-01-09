@@ -18,23 +18,28 @@ export default function Results() {
     setHealthyScans,
     infectiousScans,
     setInfectiousScans,
+    data,
+    setData,
   } = useContext(Context);
   const [processing, setProcessing] = useState(true);
   const [diagnosis, setDiagnosis] = useState(undefined);
 
   useEffect(() => {
     process(image, setDiagnosis, setProcessing);
-    saveScan(image, diagnosis);
-
     setTotalScans(totalScans + 1);
+  }, []);
+
+  useEffect(() => {
     if (diagnosis == "Your plant is healthy.") {
       setHealthyScans(healthyScans + 1);
       saveScanCount(totalScans + 1, healthyScans + 1, infectiousScans);
-    } else {
+      saveScan(image, diagnosis, data, "Healthy", setData);
+    } else if (diagnosis) {
       setInfectiousScans(infectiousScans + 1);
       saveScanCount(totalScans + 1, healthyScans, infectiousScans + 1);
+      saveScan(image, diagnosis, data, "Infected", setData);
     }
-  }, []);
+  }, [diagnosis]);
 
   if (processing) {
     return (
@@ -56,13 +61,11 @@ export default function Results() {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
-          <Foundation name="results" size={80} style={styles.scissors} />
-          <Text style={styles.largeText}>Results are In</Text>
-          <Text style={styles.smallText}>
-            {diagnosis}
-          </Text>
-          <Image style={styles.image} source={{ uri: image.uri }} />
-        </View>
+        <Foundation name="results" size={80} style={styles.scissors} />
+        <Text style={styles.largeText}>Results are In</Text>
+        <Text style={styles.smallText}>{diagnosis}</Text>
+        <Image style={styles.image} source={{ uri: image.uri }} />
+      </View>
     </View>
   );
 }

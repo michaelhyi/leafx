@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Button } from "react-native-paper";
 import Constants from "expo-constants";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import { clear } from "../functions/as.js";
+import Context from "../utils/context.js";
 
 export default function Settings() {
+  const {
+    setImage,
+    setTotalScans,
+    setHealthyScans,
+    setInfectiousScans,
+    setData,
+  } = useContext(Context);
+
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -22,7 +31,15 @@ export default function Settings() {
           mode="contained"
           color="#DF4F97"
           style={styles.settingsButton}
-          onPress={clear}
+          onPress={() =>
+            clear(
+              setImage,
+              setTotalScans,
+              setHealthyScans,
+              setInfectiousScans,
+              setData
+            )
+          }
         >
           Delete All Data
         </Button>

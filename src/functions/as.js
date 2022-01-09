@@ -1,16 +1,39 @@
-import { useContext } from "react";
+import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import Context from "../utils/context";
-
-export const clear = async () => {
-  const { setImage, setTotalScans, setHealthyScans, setInfectiousScans } =
-    useContext(Context);
-  setImage(undefined);
-  setTotalScans(0);
-  setHealthyScans(0);
-  setInfectiousScans(0);
-  await AsyncStorage.clear();
+export const clear = async (
+  setImage,
+  setTotalScans,
+  setHealthyScans,
+  setInfectiousScans,
+  setData
+) => {
+  Alert.alert(
+    "Delete all Data",
+    "Are you sure that you want to delete ALL data within this app? This action CANNOT be undone.",
+    [
+      {
+        text: "Yes",
+        onPress: () => {
+          AsyncStorage.clear().then(() => {
+            setImage(undefined);
+            setTotalScans(0);
+            setHealthyScans(0);
+            setInfectiousScans(0);
+            setData(undefined);
+            Alert.alert(
+              "Success",
+              "Successfully deleted all data within this app!"
+            );
+          });
+        },
+      },
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+    ]
+  );
 };
 
 export const saveScanCount = async (
@@ -52,33 +75,52 @@ export const readUserData = async (
   }
 };
 
-export const saveScan = async (image, diagnosis) => {
-  let data = await AsyncStorage.getItem("@scans");
-  data = JSON.parse(data);
+export const saveScan = async (image, diagnosis, data, status) => {
+  let scans = await AsyncStorage.getItem("@scans");
 
-  if (data) {
+  if (scans) {
+    scans = JSON.parse(data);
     await AsyncStorage.setItem(
       "@scans",
       JSON.stringify([
-        ...data,
+        ...scans,
         {
           image: image,
-          diagonsis: diagnosis,
+          diagnosis: diagnosis,
           date: new Date(),
+          status: status,
         },
       ])
     );
+    setData([
+      ...data,
+      {
+        image: image,
+        diagnosis: diagnosis,
+        date: new Date(),
+        status: status,
+      },
+    ]);
   } else {
     await AsyncStorage.setItem(
       "@scans",
       JSON.stringify([
         {
           image: image,
-          diagonsis: diagnosis,
+          diagnosis: diagnosis,
           date: new Date(),
+          status: status,
         },
       ])
     );
+    setData([
+      {
+        image: image,
+        diagnosis: diagnosis,
+        date: new Date(),
+        status: status,
+      },
+    ]);
   }
 };
 

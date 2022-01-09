@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, FlatList, Text } from "react-native";
 import Constants from "expo-constants";
 
 import Item from "../components/item.js";
 
-import { readScans } from "../functions/as.js";
+import Context from "../utils/context.js";
 
-export default function PastScans() {
-  const [data, setData] = useState(undefined);
-
-  useEffect(() => {
-    readScans(setData);
-  });
+export default function PastScans({ navigation }) {
+  const { data, setItemData } = useContext(Context);
 
   const renderItem = ({ item }) => (
-    <Item uri={item.image.uri} date={item.date} diagnosis={item.diagnosis} />
+    <Item
+      onPress={() => {
+        setItemData(item);
+        navigation.navigate("View Scan");
+      }}
+      item={item}
+    />
   );
 
   return (
@@ -23,11 +25,11 @@ export default function PastScans() {
         <Text style={styles.largeText}>PAST SCANS</Text>
       </View>
       <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            style={styles.flatlist}
-          />
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        style={styles.flatlist}
+      />
     </View>
   );
 }

@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import TabNavigator from "./src/components/tab-navigator.js";
 
 import { readUserData } from "./src/functions/as.js";
+import { readScans } from "./src/functions/as.js";
 
 import Context from "./src/utils/context.js";
 
@@ -13,8 +14,10 @@ export default function App() {
   const [healthyScans, setHealthyScans] = useState(0);
   const [infectiousScans, setInfectiousScans] = useState(0);
   const [itemData, setItemData] = useState(undefined);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
+    readScans(setData);
     readUserData(setTotalScans, setHealthyScans, setInfectiousScans);
   }, []);
 
@@ -31,6 +34,8 @@ export default function App() {
         setInfectiousScans,
         itemData,
         setItemData,
+        data,
+        setData,
       }}
     >
       <StatusBar style="dark" />
