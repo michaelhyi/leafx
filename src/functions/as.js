@@ -1,5 +1,6 @@
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { format } from "date-fns";
 
 export const clear = async (
   setImage,
@@ -83,23 +84,23 @@ export const saveScan = async (image, diagnosis, status, setData) => {
     await AsyncStorage.setItem(
       "@scans",
       JSON.stringify([
-        ...scans,
         {
           image: image,
           diagnosis: diagnosis,
-          date: new Date(),
+          date: format(new Date(), "MM/dd/yyyy p"),
           status: status,
         },
+        ...scans,
       ])
     );
     setData([
-      ...scans,
       {
         image: image,
         diagnosis: diagnosis,
-        date: new Date(),
+        date: format(new Date(), "MM/dd/yyyy p"),
         status: status,
       },
+      ...scans,
     ]);
   } else {
     await AsyncStorage.setItem(
@@ -108,7 +109,7 @@ export const saveScan = async (image, diagnosis, status, setData) => {
         {
           image: image,
           diagnosis: diagnosis,
-          date: new Date(),
+          date: format(new Date(), "MM/dd/yyyy p"),
           status: status,
         },
       ])
@@ -117,7 +118,7 @@ export const saveScan = async (image, diagnosis, status, setData) => {
       {
         image: image,
         diagnosis: diagnosis,
-        date: new Date(),
+        date: format(new Date(), "MM/dd/yyyy p"),
         status: status,
       },
     ]);

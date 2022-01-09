@@ -12,7 +12,7 @@ export default function ViewScan() {
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
         <Foundation name="results" size={80} style={styles.scissors} />
-        <Text style={styles.largeText}>Results are In</Text>
+        <Text style={styles.largeText}>{itemData.date}</Text>
         <Text style={styles.smallText}>{itemData.diagnosis}</Text>
         <Image style={styles.image} source={{ uri: itemData.image.uri }} />
       </View>
