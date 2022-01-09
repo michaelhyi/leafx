@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, View, Text, ActivityIndicator, Image } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
+import Foundation from "react-native-vector-icons/Foundation";
 import Constants from "expo-constants";
 
 import { saveScan, saveScanCount } from "../functions/as.js";
@@ -54,8 +55,14 @@ export default function Results() {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: image.uri }} />
-      <Text>{diagnosis}</Text>
+      <View style={styles.backgroundContainer}>
+          <Foundation name="results" size={80} style={styles.scissors} />
+          <Text style={styles.largeText}>Results are In</Text>
+          <Text style={styles.smallText}>
+            {diagnosis}
+          </Text>
+          <Image style={styles.image} source={{ uri: image.uri }} />
+        </View>
     </View>
   );
 }
