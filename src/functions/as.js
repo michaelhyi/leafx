@@ -1,4 +1,56 @@
+import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import Context from "../utils/context";
+
+export const clear = async () => {
+  const { setImage, setTotalScans, setHealthyScans, setInfectiousScans } =
+    useContext(Context);
+  setImage(undefined);
+  setTotalScans(0);
+  setHealthyScans(0);
+  setInfectiousScans(0);
+  await AsyncStorage.clear();
+};
+
+export const saveScanCount = async (
+  totalScans,
+  healthyScans,
+  infectiousScans
+) => {
+  await AsyncStorage.setItem(
+    "@userData",
+    JSON.stringify({
+      totalScans: totalScans,
+      healthyScans: healthyScans,
+      infectiousScans: infectiousScans,
+    })
+  );
+};
+
+export const readUserData = async (
+  setTotalScans,
+  setHealthyScans,
+  setInfectiousScans
+) => {
+  let data = await AsyncStorage.getItem("@userData");
+  data = JSON.parse(data);
+
+  if (data) {
+    setTotalScans(data.totalScans);
+    setHealthyScans(data.healthyScans);
+    setInfectiousScans(data.infectiousScans);
+  } else {
+    await AsyncStorage.setItem(
+      "@userData",
+      JSON.stringify({
+        totalScans: 0,
+        healthyScans: 0,
+        infectiousScans: 0,
+      })
+    );
+  }
+};
 
 export const saveScan = async (image, diagnosis) => {
   let data = await AsyncStorage.getItem("@scans");

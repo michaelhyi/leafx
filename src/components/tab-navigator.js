@@ -15,7 +15,10 @@ export default function TabNavigator() {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
-        screenOptions={{ headerShown: false, activeTintColor: "#7c9982" }}
+        screenOptions={{
+          headerShown: false,
+          activeTintColor: "#7c9982",
+        }}
       >
         <Tab.Screen
           name="Past Scans"

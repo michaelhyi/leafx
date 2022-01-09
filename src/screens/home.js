@@ -9,7 +9,8 @@ import Button from "../components/button.js";
 import Context from "../utils/context.js";
 
 export default function Home({ navigation }) {
-  const { setImage } = useContext(Context);
+  const { setImage, totalScans, healthyScans, infectiousScans } =
+    useContext(Context);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -46,7 +47,7 @@ export default function Home({ navigation }) {
       >
         <View>
           <View style={styles.rectangle}>
-            <Text style={styles.icons}>20</Text>
+            <Text style={styles.icons}>{totalScans}</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
               <Text style={styles.largeText1}>Total Scans</Text>
               <Text style={styles.smallText1}>
@@ -57,7 +58,7 @@ export default function Home({ navigation }) {
         </View>
         <View>
           <View style={styles.rectangle1}>
-            <Text style={styles.icons}>10</Text>
+            <Text style={styles.icons}>{infectiousScans}</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
               <Text style={styles.largeText1}>Infectious Plants</Text>
               <Text style={styles.smallText1}>Plants that need your help</Text>
@@ -66,9 +67,9 @@ export default function Home({ navigation }) {
         </View>
         <View>
           <View style={styles.rectangle1}>
-            <Text style={styles.icons}>10</Text>
+            <Text style={styles.icons}>{healthyScans}</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
-              <Text style={styles.largeText1}>Healthy Plants</Text>
+              <Text style={styles.largeText1}>Healthy Scans</Text>
               <Text style={styles.smallText1}>
                 Plants that take in carbondioxide and produce oxygen for you
               </Text>

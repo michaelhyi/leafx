@@ -1,12 +1,14 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { Button } from "react-native-paper"
+import { Button } from "react-native-paper";
 import Constants from "expo-constants";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
+import { clear } from "../functions/as.js";
+
 export default function Settings() {
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.largeText}>SETTINGS</Text>
       </View>
@@ -19,7 +21,9 @@ export default function Settings() {
         <Button
           mode="contained"
           color="#DF4F97"
-          style={styles.settingsButton}>
+          style={styles.settingsButton}
+          onPress={clear}
+        >
           Delete All Data
         </Button>
       </View>
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
   memory: {
     marginTop: 5,
     textAlign: "center",
-    color: "#7c9982"
+    color: "#7c9982",
   },
   background: {
     marginTop: 20,

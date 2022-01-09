@@ -3,19 +3,36 @@ import { StyleSheet, View, Text, ActivityIndicator, Image } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import Constants from "expo-constants";
 
-import { saveScan } from "../functions/as.js";
+import { saveScan, saveScanCount } from "../functions/as.js";
 import { process } from "../functions/tf.js";
 
 import Context from "../utils/context.js";
 
 export default function Results() {
-  const { image } = useContext(Context);
+  const {
+    image,
+    totalScans,
+    setTotalScans,
+    healthyScans,
+    setHealthyScans,
+    infectiousScans,
+    setInfectiousScans,
+  } = useContext(Context);
   const [processing, setProcessing] = useState(true);
   const [diagnosis, setDiagnosis] = useState(undefined);
 
   useEffect(() => {
     process(image, setDiagnosis, setProcessing);
     saveScan(image, diagnosis);
+
+    setTotalScans(totalScans + 1);
+    if (diagnosis == "Your plant is healthy.") {
+      setHealthyScans(healthyScans + 1);
+      saveScanCount(totalScans + 1, healthyScans + 1, infectiousScans);
+    } else {
+      setInfectiousScans(infectiousScans + 1);
+      saveScanCount(totalScans + 1, healthyScans, infectiousScans + 1);
+    }
   }, []);
 
   if (processing) {
