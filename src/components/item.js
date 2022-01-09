@@ -2,15 +2,15 @@ import React from "react";
 import { format, parseISO } from "date-fns";
 import { StyleSheet, View, TouchableOpacity, Image, Text } from "react-native";
 
-export default function Item({ onPress, item }) {
+export default function Item({ onPress, uri, date, status }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.item}>
-      <Image style={styles.image} source={{ uri: item.image.uri }} />
+      <Image style={styles.image} source={{ uri: uri }} />
       <View style={styles.text}>
         <Text style={styles.largeText}>
-          {format(parseISO(item.date), "MM/dd/yyyy p")}
+          {format(parseISO(date), "MM/dd/yyyy p")}
         </Text>
-        <Text style={styles.smallText}>{item.status}</Text>
+        <Text style={styles.smallText}>{status}</Text>
       </View>
     </TouchableOpacity>
   );

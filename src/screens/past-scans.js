@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, FlatList, Text } from "react-native";
 import Constants from "expo-constants";
 
@@ -15,7 +15,9 @@ export default function PastScans({ navigation }) {
         setItemData(item);
         navigation.navigate("View Scan");
       }}
-      item={item}
+      uri={item.image.uri}
+      date={item.date}
+      status={item.status}
     />
   );
 

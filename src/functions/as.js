@@ -75,11 +75,11 @@ export const readUserData = async (
   }
 };
 
-export const saveScan = async (image, diagnosis, data, status) => {
+export const saveScan = async (image, diagnosis, status, setData) => {
   let scans = await AsyncStorage.getItem("@scans");
 
   if (scans) {
-    scans = JSON.parse(data);
+    scans = JSON.parse(scans);
     await AsyncStorage.setItem(
       "@scans",
       JSON.stringify([
@@ -93,7 +93,7 @@ export const saveScan = async (image, diagnosis, data, status) => {
       ])
     );
     setData([
-      ...data,
+      ...scans,
       {
         image: image,
         diagnosis: diagnosis,
