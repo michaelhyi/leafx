@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   largeText: {
     marginLeft: 10,
     fontFamily: "Avenir-Heavy",
-    fontSize: 20,
+    fontSize: 19,
     color: "#7c9982",
   },
   smallText: {

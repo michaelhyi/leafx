@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, View, Text, ActivityIndicator, Image } from "react-native";
+import { StyleSheet, View, Text, ActivityIndicator, Image, TouchableOpacity } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import Foundation from "react-native-vector-icons/Foundation";
 import Constants from "expo-constants";
@@ -9,7 +9,7 @@ import { process } from "../functions/tf.js";
 
 import Context from "../utils/context.js";
 
-export default function Results() {
+export default function Results({navigation}) {
   const {
     image,
     totalScans,
@@ -62,6 +62,9 @@ export default function Results() {
             {diagnosis}
           </Text>
           <Image style={styles.image} source={{ uri: image.uri }} />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Feather name="x" size={50} style={styles.exitButton}/>
+          </TouchableOpacity>
         </View>
     </View>
   );
@@ -106,4 +109,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     color: "#8D8D8D",
   },
+  exitButton: {
+    color: "#7c9982",
+    marginBottom: 10,
+  }
 });
