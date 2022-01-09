@@ -69,7 +69,7 @@ export default function Home({ navigation }) {
           <View style={styles.rectangle1}>
             <Text style={styles.icons}>{healthyScans}</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
-              <Text style={styles.largeText1}>Healthy Scans</Text>
+              <Text style={styles.largeText1}>Healthy Plants</Text>
               <Text style={styles.smallText1}>
                 Plants that take in carbondioxide and produce oxygen for you
               </Text>
