@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, View, Text, ActivityIndicator, Image } from "react-native";
-import Feather from "react-native-vector-icons/Feather"
+import Feather from "react-native-vector-icons/Feather";
 import Constants from "expo-constants";
 
 import { saveScan } from "../functions/as.js";
-import { process } from "../functions/tf.js";
+// import { process } from "../functions/tf.js";
 
 import Context from "../utils/context.js";
 
@@ -13,20 +13,23 @@ export default function Results() {
   const [processing, setProcessing] = useState(true);
   const [diagnosis, setDiagnosis] = useState(undefined);
 
-  useEffect(() => {
-    process(image, setDiagnosis, setProcessing);
-    saveScan(image, diagnosis);
-  }, []);
+  // useEffect(() => {
+  //   process(image, setDiagnosis, setProcessing);
+  //   saveScan(image, diagnosis);
+  // }, []);
 
   if (processing) {
     return (
       <View style={styles.container}>
         <View style={styles.backgroundContainer}>
-          <Feather name="scissors" size={80} style={styles.scissors}/>
-          <Text style={styles.largeText} >Image is Processing...</Text>
-          <Text style={styles.smallText} >Our AI is automatically analyzing your image and matching it to 10,000 other plants.</Text>
+          <Feather name="scissors" size={80} style={styles.scissors} />
+          <Text style={styles.largeText}>Image is Processing...</Text>
+          <Text style={styles.smallText}>
+            Our AI is automatically analyzing your image and matching it to
+            10,000 other plants.
+          </Text>
           <Image style={styles.image} source={{ uri: image.uri }} />
-          <ActivityIndicator style={{marginBottom: 15}}/>
+          <ActivityIndicator style={{ marginBottom: 15 }} />
         </View>
       </View>
     );
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
   },
   backgroundContainer: {
     margin: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
@@ -68,15 +71,15 @@ const styles = StyleSheet.create({
   largeText: {
     marginTop: 10,
     fontFamily: "Avenir-Heavy",
-    fontSize: 25
+    fontSize: 25,
   },
   smallText: {
     marginTop: 10,
     fontFamily: "Avenir-Heavy",
     fontSize: 15,
-    textAlign: 'center',
+    textAlign: "center",
     marginLeft: 10,
     marginRight: 10,
-    color: "#8D8D8D"
-  }
+    color: "#8D8D8D",
+  },
 });

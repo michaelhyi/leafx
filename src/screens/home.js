@@ -2,18 +2,13 @@ import React, { useContext } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 import * as ImagePicker from "expo-image-picker";
-import { createStackNavigator } from "@react-navigation/stack";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import Button from "../components/button.js";
 
-import Results from "./results.js";
-
 import Context from "../utils/context.js";
 
-const Stack = createStackNavigator();
-
-function HomeScreen({ navigation }) {
+export default function Home({ navigation }) {
   const { setImage } = useContext(Context);
 
   const pickImage = async () => {
@@ -36,18 +31,19 @@ function HomeScreen({ navigation }) {
     </View>
   );*/
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.largeText}>HOME</Text>
       </View>
       <View style={styles.container1}>
-        <TouchableOpacity
-          style={styles.roundButton2} onPress={pickImage}>
-            <MaterialIcons name="upload-file" size={100} style={styles.upload}/>
+        <TouchableOpacity style={styles.roundButton2} onPress={pickImage}>
+          <MaterialIcons name="upload-file" size={100} style={styles.upload} />
           <Text style={styles.uploadText}>Select Image</Text>
         </TouchableOpacity>
       </View>
-      <View styles={{ flexDirection: "column", justifyContent: "space-between" }}>
+      <View
+        styles={{ flexDirection: "column", justifyContent: "space-between" }}
+      >
         <View>
           <View style={styles.rectangle}>
             <Text style={styles.icons}>20</Text>
@@ -61,18 +57,16 @@ function HomeScreen({ navigation }) {
         </View>
         <View>
           <View style={styles.rectangle1}>
-          <Text style={styles.icons}>10</Text>
+            <Text style={styles.icons}>10</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
               <Text style={styles.largeText1}>Infectious Plants</Text>
-              <Text style={styles.smallText1}>
-                Plants that need your help
-              </Text>
+              <Text style={styles.smallText1}>Plants that need your help</Text>
             </View>
           </View>
         </View>
         <View>
           <View style={styles.rectangle1}>
-          <Text style={styles.icons}>10</Text>
+            <Text style={styles.icons}>10</Text>
             <View style={{ flexDirection: "column", flexShrink: 1 }}>
               <Text style={styles.largeText1}>Healthy Plants</Text>
               <Text style={styles.smallText1}>
@@ -83,15 +77,6 @@ function HomeScreen({ navigation }) {
         </View>
       </View>
     </View>
-  );
-}
-
-export default function Home() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Results" component={Results} />
-    </Stack.Navigator>
   );
 }
 
@@ -113,8 +98,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   container1: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   largeText: {
     marginBottom: 10,
@@ -127,11 +112,11 @@ const styles = StyleSheet.create({
     marginTop: 40,
     width: 230,
     height: 230,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
     borderRadius: 100000,
-    backgroundColor: '#7c9982',
+    backgroundColor: "#7c9982",
     shadowColor: "#000",
     shadowOffset: {
       width: 2,
@@ -206,7 +191,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "#7c9982",
     fontSize: 45,
-    fontFamily: "Avenir-Heavy"
+    fontFamily: "Avenir-Heavy",
   },
 
   largeText1: {
