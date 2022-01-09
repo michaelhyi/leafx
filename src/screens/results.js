@@ -38,7 +38,7 @@ export default function Results() {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: image.uri }} />
-      {/* <Text>{diagnosis}</Text> */}
+      <Text>{diagnosis}</Text>
     </View>
   );
 }
